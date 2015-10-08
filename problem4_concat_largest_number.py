@@ -6,6 +6,7 @@
 #   Write a function that given a list of non negative integers, arranges them such that they form the largest possible number. For example, given [50, 2, 1, 9], the largest formed number is 95021.
 
 
+# APPROACH 1
 def concat_largest_number(lst):
     ''' # doctest
     >>> concat_largest_number([9, 5, 90, 50, 92, 900])
@@ -52,7 +53,32 @@ def concat_largest_number(lst):
     return concatenated_number  # TODO?: convert back to int
 
 
+# APPROACH 2
+def concat_largest_number_2(lst):
+    ''' # doctest
+    >>> concat_largest_number_2([9, 5, 90, 50, 92, 900])
+    '99290900550'
+    >>> concat_largest_number_2([90, 9])
+    '990'
+    >>> concat_largest_number_2([420, 42, 423])
+    '42423420'
+    >>> concat_largest_number_2([8, 87, 88, 89])
+    '8988887'
+    '''
+
+    # TODO: guarantee list is non-empty and consists solely of ints (or int-strings)
+    lst = [str(x) for x in lst]  # Stringify
+    #print lst
+    lst = sorted(lst, cmp = lambda a,b: cmp(a+b, b+a), reverse=True)
+    #print lst
+    concatenated_number = ''.join(lst)
+    #print concatenated_number
+    return concatenated_number  # TODO?: convert back to int
+
+
+
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod(verbose=True)
+
